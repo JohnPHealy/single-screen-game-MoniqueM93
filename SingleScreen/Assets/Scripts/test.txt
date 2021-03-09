@@ -1,0 +1,56 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerMovement : MonoBehaviour
+{
+    public Rigidbody2D myRB;
+    public float maxSpeed;
+    public float acceleration;
+    public float moveSpeed;
+    public float horizontalSpeed;
+    public float verticalSpeed;
+    public Transform animatorGO;
+    float animatorGOInitial;
+    Animator anim;
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        myRB = GetComponent<Rigidbody2D>();
+        animatorGOInitial = animatorGO.localScale.x;
+        anim = GetComponentInChildren<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        horizontalSpeed = myRB.velocity.x;
+
+        verticalSpeed = myRB.velocity.y;
+
+        //Moves Forward and back along z axis                           //Up/Down
+        transform.Translate(Vector3.up * Time.deltaTime * Input.GetAxis("Vertical") * moveSpeed);
+        //Moves Left and right along x Axis                               //Left/Right
+        transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime);
+
+      float moving = Input.GetAxis("Horizontal");
+       // float movingVertical = Input.GetAxis("Vertical");
+
+        if (moving > 0)
+        {
+            animatorGO.localScale = new Vector3(animatorGOInitial, animatorGO.localScale.y, animatorGO.localScale.z);
+        }
+        else if (moving < 0)
+        {
+            animatorGO.localScale = new Vector3(-animatorGOInitial, animatorGO.localScale.y, animatorGO.localScale.z);
+        }
+
+        //animator speed code
+        anim.SetFloat("hspeed", Mathf.Abs(horizontalSpeed + moveSpeed));
+        anim.SetFloat("vspeed", Mathf.Abs(Input.GetAxis("Vertical") + moveSpeed));
+     //   anim.SetFloat("vspeed", verticalSpeed);
+        //end animator speed code
+    }
+}
