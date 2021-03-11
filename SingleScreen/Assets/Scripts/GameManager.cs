@@ -12,12 +12,11 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text pickupText;
 
-    public static int pickupValue = 100;
-
+    public static int pickupValue = 10;
+    
     // Start is called before the first frame update
     void Start()
     {
-        pickupsInScene = GameObject.FindGameObjectsWithTag("pickup"); //populating array with all objects are pickups
         currentPickupCount = pickupsInScene.Length;
     }
 
@@ -25,6 +24,5 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score;
-        pickupText.text = "Pickups Left: " + currentPickupCount;
     }
 }
