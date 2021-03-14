@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,7 @@ public class GameManager : MonoBehaviour
     public TMP_Text scoreText;
     public TMP_Text pickupText;
 
-    public static int pickupValue = 10;
+    public static int pickupValue = 1;
     
     // Start is called before the first frame update
     void Start()
@@ -24,5 +25,11 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         scoreText.text = "Score: " + score;
+
+        if (score == 12)
+        {
+            SceneManager.LoadScene(2);
+            score = 0;
+        }
     }
 }
