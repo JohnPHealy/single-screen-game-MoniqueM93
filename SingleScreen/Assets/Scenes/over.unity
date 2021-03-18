@@ -342,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7239377419859347502, guid: f42343747dee4e9449b69f9f8f87e256, type: 3}
       propertyPath: m_Text
-      value: Would you like to try again?
+      value: Would you like to play again?
       objectReference: {fileID: 0}
     - target: {fileID: 7239377420528685289, guid: f42343747dee4e9449b69f9f8f87e256, type: 3}
       propertyPath: m_Text
